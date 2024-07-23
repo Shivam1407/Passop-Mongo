@@ -11,7 +11,7 @@ const Manager = () => {
     const [passwordArray, setPasswordArray] = useState([])
 
     const getPasswords = async () =>{
-        let req = await fetch("https://passop-mongo-backend.onrender.com")
+        let req = await fetch("http://localhost:3000/")
         let passwords = await req.json()
         console.log(passwords)
         setPasswordArray(passwords)
@@ -34,12 +34,12 @@ const Manager = () => {
     }
     const savePassword = async () => {
         if (form.site.length > 3 && form.username.length > 3 && form.password.length > 3) {
-            await fetch("https://passop-mongo-backend.onrender.com",{method:"DELETE",headers: { "Content-Type": "application/json"}, body: JSON.stringify({id:form.id})})
+            await fetch("http://localhost:3000/",{method:"DELETE",headers: { "Content-Type": "application/json"}, body: JSON.stringify({id:form.id})})
 
 
             const updatedPasswords = [...passwordArray, { ...form, id: uuidv4() }];
             setPasswordArray(updatedPasswords);
-            await fetch("https://passop-mongo-backend.onrender.com",{method:"POST",headers: {"Content-Type": "application/json"},body: JSON.stringify({...form, id: uuidv4() })})
+            await fetch("http://localhost:3000/",{method:"POST",headers: {"Content-Type": "application/json"},body: JSON.stringify({...form, id: uuidv4() })})
 
             setform({ site: "", username: "", password: "" })
         }
@@ -56,7 +56,7 @@ const Manager = () => {
             const updatedPasswordArray = passwordArray.filter(item => item.id !== id);
             setPasswordArray(updatedPasswordArray);
             // localStorage.setItem("passwords", JSON.stringify(updatedPasswordArray));
-            let res = await fetch("https://passop-mongo-backend.onrender.com",{method:"DELETE",headers: { "Content-Type": "application/json"}, body: JSON.stringify({id})})
+            let res = await fetch("http://localhost:3000/",{method:"DELETE",headers: { "Content-Type": "application/json"}, body: JSON.stringify({id})})
         }
     }
 
