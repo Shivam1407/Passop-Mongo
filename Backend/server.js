@@ -8,7 +8,7 @@ const cors = require('cors')
 
 // Connection URL
 require('dotenv').config()
-const url = 'mongodb://localhost:27017';
+const url = 'https://passop-mongo-frontend.onrender.com';
 const client = new MongoClient(url);
 
 // Database Name
@@ -47,6 +47,6 @@ res.send({success:true, result: findResult})
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on http://localhost:${port}`)
+  console.log(`Example app listening on https://passop-mongo-frontend.onrender.com`)
 })
 //node --watch server.js
